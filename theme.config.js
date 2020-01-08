@@ -3,9 +3,7 @@ module.exports = {
     theme: ['default','light'],   //theme type
     output:{                       
         all:'./public/theme',
-        html:'./public'
     },
-    injectHtml:'./src/index.html',    //html template
+    injectHtml:'./public/index.html',    //html template
     themeTagId:'theme',                 
-    // themeModuleBuild:true,      //default value: true
 }

@@ -7,6 +7,7 @@ const gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefix = require('gulp-autoprefixer'),
     filter = require('gulp-filter'),
+    inject = require('gulp-inject'),
     gulpif = require('gulp-if'),
     fs = require("fs"),
     del = require('del'),
@@ -14,7 +15,9 @@ const gulp = require('gulp'),
     theme = process.env.npm_config_theme || 'default',
     { theme: allTheme,
         common: commonScss,
+        themeTagId ,
         output,
+        injectHtml,
         themeModuleBuild = false
     } = require('./theme.config.js'),
     node_env = argv.env || 'development',
@@ -34,6 +37,7 @@ const themeTask = async (done) => {
 
 const scssTask = (themeType = theme) => new Promise((resolve) => {
     bundleScss(themeType).on('end', () => {
+        injectTask();
         resolve(true);
     })
 })
@@ -86,6 +90,24 @@ const watchPipe = done => {
 
 const cleanFiles = () => {
     return del(output_path_style, { read: false })
+}
+
+const injectTask = () => {
+    const target = gulp.src(injectHtml),
+        source = gulp.src([`${output_path_style}/${concat_theme_name(theme)}`], { read: false });
+
+    return target.pipe(
+        inject(source, {
+            transform: function (filepath) {
+                if (filepath.includes(`${theme}.css`)) {
+                    const injectPath = `${filepath}`.replace(/\/public/g,'')
+                    return `<link id="${themeTagId}"  rel="stylesheet" type="text/css" href="${injectPath}"></link>`
+                }
+                // Use the default transform as fallback:
+                return inject.transform.apply(inject.transform, arguments);
+            }
+        }, { relative: true })
+    ).pipe(gulp.dest('public'))
 }
 
 const jsTask = (done) => {
