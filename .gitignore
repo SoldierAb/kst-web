@@ -19,5 +19,5 @@ yarn-error.log*
 *.sln
 *.sw?
 dist
-/public/
+/public/*
 !/public/index.html
