@@ -15,14 +15,11 @@ const gulp = require('gulp'),
     theme = process.env.npm_config_theme || 'default',
     { theme: allTheme,
         common: commonScss,
-        themeTagId ,
-        output,
-        injectHtml,
         themeModuleBuild = false
     } = require('./theme.config.js'),
     node_env = argv.env || 'development',
     scss_path = ['src/**/*.scss', '!node_modules'],
-    output_path_style = output.all,
+    output_path_style = './public/theme',
     output_path_style_modules = `${output_path_style}/modules`,
     module_ext_name = `${node_env === 'production' ? '.min.css' : '.css'}`,
     concat_theme_name = (param) => `${param}${node_env === 'production' ? '.min' : ''}.css`;
@@ -93,7 +90,7 @@ const cleanFiles = () => {
 }
 
 const injectTask = () => {
-    const target = gulp.src(injectHtml),
+    const target = gulp.src('./public/index.html'),
         source = gulp.src([`${output_path_style}/${concat_theme_name(theme)}`], { read: false });
 
     return target.pipe(
@@ -101,7 +98,7 @@ const injectTask = () => {
             transform: function (filepath) {
                 if (filepath.includes(`${theme}.css`)) {
                     const injectPath = `${filepath}`.replace(/\/public/g,'')
-                    return `<link id="${themeTagId}"  rel="stylesheet" type="text/css" href="${injectPath}"></link>`
+                    return `<link id="kst-theme-link"  rel="stylesheet" type="text/css" href="${injectPath}"></link>`
                 }
                 // Use the default transform as fallback:
                 return inject.transform.apply(inject.transform, arguments);

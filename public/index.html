@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>logo.png">
     <title>kst-web</title>
     <script src="./kst.min.js"></script>
     <style type="text/css">
@@ -22,6 +21,7 @@
       input:-webkit-autofill,
       textarea:-webkit-autofill,
       select:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px transparent inset !important;
         -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
         background-color: transparent;
         background-image: none;
@@ -29,6 +29,7 @@
       }
     </style>
     <!-- inject:css -->
+    <link id="kst-theme-link"  rel="stylesheet" type="text/css" href="/theme/default.css"></link>
     <!-- endinject -->
   </head>
   <body>

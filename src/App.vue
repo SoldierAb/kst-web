@@ -1,6 +1,8 @@
 <template>
   <div class="app-container">
     <Test-page></Test-page>
+    <button @click="toggleSkin('light')">light</button>
+    <button @click="toggleSkin('default')">default</button>
   </div>
 </template>
 
@@ -22,7 +24,11 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    toggleSkin(skin){
+      K.toggleSkin(skin);
+    }
+  }
 };
 </script>
 
