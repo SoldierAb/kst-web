@@ -4,7 +4,7 @@
 
 // import './loading.scss';
 
-import LoadingComp from './src/Loading.vue'
+import LoadingComp from './src/Loading.vue';
 
 let LoadingInstance = null;
 
@@ -23,11 +23,11 @@ const KLoading = (Vue, { background = 'rgba(0,0,0,0.6)', color = '#4b9cdb' }) =>
         LoadingInstance.show = showLoading;
         if (!callback) callback = new Function();
         callback();
-    }
+    };
     ['show', 'hide'].forEach((item) => {
         return Vue.prototype.$loading[`${item}`] = (callback) => Vue.prototype.$loading(item === 'show', callback);
-    })
-}
+    });
+};
 
 
 export default KLoading;

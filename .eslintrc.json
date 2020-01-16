@@ -1,0 +1,43 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "globals": {
+    "K": "readonly"
+  },
+  "extends": ["plugin:vue/recommended", "eslint:recommended", "prettier"],
+  "plugins": ["markdown","html","vue"],
+  "rules": {
+    "no-global-assign": ["error"],
+    "eqeqeq": ["warn", "allow-null"],
+    "comma-dangle": [2, "always-multiline"],
+    "camelcase": "off",
+    "no-var": "error",
+    "no-extra-boolean-cast": "off",
+    "semi": ["error", "always"],
+    "quotes": ["warn", "single"],
+    "vue/require-prop-types": "off",
+    "vue/require-default-prop": "off",
+    "vue/no-reserved-keys": "off",
+    "vue/prop-name-casing": "off",
+    "vue/mustache-interpolation-spacing": "off",
+    "vue/multiline-html-element-content-newline": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/max-attributes-per-line": [
+      2,
+      {
+        "singleline": 20,
+        "multiline": {
+          "max": 1,
+          "allowFirstLine": false
+        }
+      }
+    ]
+  }
+}

@@ -1,3 +1,8 @@
-.app-container{
-  background:$bg-color;
+.app-container {
+  background: $bg-color;
+
+  .test-page {
+    color: $font-color;
+    border: 1px solid $font-color;
+  }
 }

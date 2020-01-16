@@ -1,0 +1,7 @@
+node_modules/
+**/*.spec.*
+**/style/
+*.html
+dist/
+package.json
+vue.config.js

@@ -1,9 +1,9 @@
 <template>
   <div class="k-markdown-container">
     <mavon-editor
-      :style="`height:1000px;z-index:888;${mode==='editor'?'':'width: 200%;transform: translate3d(-50%,0,0);'}`"
       ref="mavoneditor"
       v-model="content"
+      :style="`height:1000px;z-index:888;${mode==='editor'?'':'width: 200%;transform: translate3d(-50%,0,0);'}`"
       :toolbars="markdownOption"
       @imgAdd="imgAdd"
       @save="saveMd"
@@ -24,39 +24,39 @@
 </style>
 
 <script>
-import Vue from "vue";
-import MavonEditor from "mavon-editor";
-import "mavon-editor/dist/css/index.css";
-import uploadFetch from '@u/uploadFetch'
+import Vue from 'vue';
+import MavonEditor from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
+import uploadFetch from '@u/uploadFetch';
 
 
 Vue.use(MavonEditor);
 
 export default {
-  name: "KMarkdown",
+  name: 'KMarkdown',
   components: {},
   model:{
     prop:'value',
-    event:'markdown'
+    event:'markdown',
   },
   props: {
     mode: {
       type: String,
       default() {
-        return "editor";
-      }
+        return 'editor';
+      },
     },
     value: {
       type: String,
       default() {
-        return "";
-      }
+        return '';
+      },
     },
     imgUrl:{
       type:String,
       default(){
-        return  ``
-      }
+        return  ``;
+      },
     },
     markdownOption: {
       type: Object,
@@ -85,13 +85,13 @@ export default {
           boxShadow: false,
           editable: false,
           toolbarsFlag: false,
-          defaultOpen: "preview",
+          defaultOpen: 'preview',
           toolbars: {
-            navigation: true // 导航目录
-          }
+            navigation: true, // 导航目录
+          },
         };
-      }
-    }
+      },
+    },
   },
   data() {
     return {};
@@ -102,9 +102,9 @@ export default {
         return this.value;
       },
       set(val){
-        this.$emit("markdown",val)
-      }
-    }
+        this.$emit('markdown',val);
+      },
+    },
   },
   created() {},
   mounted() {},
@@ -118,15 +118,15 @@ export default {
           const { path } = res.data;
           this.$refs.mavoneditor.$img2Url(
             filename,
-            `${location.href.includes("localhost")? "http://127.0.0.1:8080/": ""}${path}`
+            `${location.href.includes('localhost')? 'http://127.0.0.1:8080/': ''}${path}`
           );
         }
       });
     },
 
     saveMd(str, renderStr) {
-      if (this.mode === "editor") this.$emit("onsave", str, renderStr);
-    }
-  }
+      if (this.mode === 'editor') this.$emit('onsave', str, renderStr);
+    },
+  },
 };
 </script>

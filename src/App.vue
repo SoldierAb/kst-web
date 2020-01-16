@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <Test-page></Test-page>
+    <Test-page />
     <button @click="toggleSkin('light')">light</button>
     <button @click="toggleSkin('default')">default</button>
   </div>
@@ -13,10 +13,10 @@
 </style>
 
 <script>
-import TestPage from './views/TestPage'
+import TestPage from './views/TestPage';
 
 export default {
-  name: "app",
+  name: 'App',
   components:{TestPage},
   data() {
     return { };
@@ -27,8 +27,8 @@ export default {
   methods: {
     toggleSkin(skin){
       K.toggleSkin(skin);
-    }
-  }
+    },
+  },
 };
 </script>
 

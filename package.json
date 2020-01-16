@@ -11,12 +11,14 @@
     "start": "nodemon --watch vue.config.js --exec \"npm run serve --theme=default\"",
     "serve": "vue-cli-service serve",
     "build:dev": "vue-cli-service build --mode=development --report",
-    "lint": "vue-cli-service lint",
+    "lint": "npm-run-all lint:comp lint:style",
+    "lint:comp": "vue-cli-service lint -c ./.eslintrc.json --fix --ext .js,.vue ./src",
+    "lint:style": "stylelint --config ./.stylelintrc.json \"src/**/*.scss\" --syntax scss --fix",
     "inspect": "vue-cli-service inspect --mode=production > config.prod.js",
     "inspect:dev": "vue-cli-service inspect > config.dev.js",
-    "commit": "git add . && git-cz",
     "release": "standard-version",
-    "push": "npm-run-all commit release"
+    "commit": "git add . && git-cz",
+    "postinstall": "node scripts/postinstall || echo \"ignore\""
   },
   "config": {
     "commitizen": {
@@ -24,7 +26,7 @@
     }
   },
   "gitHooks": {
-    "pre-commit": "npm run lint",
+    "pre-commit": "npm run lint  && git add .",
     "commit-msg": "node scripts/verify-commit.js"
   },
   "dependencies": {
@@ -61,6 +63,9 @@
     "del": "^5.1.0",
     "element-ui": "^2.12.0",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-markdown": "^1.0.1",
     "eslint-plugin-vue": "^5.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fs": "0.0.1-security",
@@ -84,13 +89,20 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "node-emoji": "^1.10.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prettier": "^1.19.1",
     "sass-loader": "^7.1.0",
     "standard-version": "^7.0.1",
     "style-loader": "^0.23.1",
+    "stylelint": "^13.0.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-config-standard-scss": "^1.1.0",
+    "stylelint-scss": "^3.13.0",
     "terser-webpack-plugin": "^1.4.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "view-design": "^4.0.2",
@@ -99,23 +111,6 @@
     "webpack-dev-server": "^2.9.7",
     "yargs": "^15.0.2",
     "yorkie": "^2.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "globals": {
-      "K": "readonly"
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {

@@ -1,11 +1,11 @@
 <template>
-  <div class="loading-gui-box" :style="`background:${background}`" v-show="show">
+  <div v-show="show" class="loading-gui-box" :style="`background:${background}`">
     <div class="loading-box">
-      <div class="k-line k-line-1" :style="`background:${color}`"></div>
-      <div class="k-line k-line-2" :style="`background:${color}`"></div>
-      <div class="k-line k-line-3" :style="`background:${color}`"></div>
-      <div class="k-line k-line-4" :style="`background:${color}`"></div>
-      <div class="k-line k-line-5" :style="`background:${color}`"></div>
+      <div class="k-line k-line-1" :style="`background:${color}`" />
+      <div class="k-line k-line-2" :style="`background:${color}`" />
+      <div class="k-line k-line-3" :style="`background:${color}`" />
+      <div class="k-line k-line-4" :style="`background:${color}`" />
+      <div class="k-line k-line-5" :style="`background:${color}`" />
     </div>
   </div>
 </template>
@@ -82,20 +82,20 @@
 
 <script>
 export default {
-  name: "KLoading",
+  name: 'KLoading',
   components: {},
   props: {},
   data() {
     return {
       show: false,
-      background: "rgba(0,0,0,0.6)",
-      color: "#4b9cdb"
+      background: 'rgba(0,0,0,0.6)',
+      color: '#4b9cdb',
     };
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>

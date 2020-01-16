@@ -1,15 +1,15 @@
 <template>
-  <div class="test-page">TestPage</div>
+  <div v-show="showPage" class="test-page">TestPage</div>
 </template>
 
 <script>
 export default {
     data(){
         return {
-
-        }
-    }
-}
+            showPage:false,
+        };
+    },
+};
 </script>
 
 <style lang="less">
