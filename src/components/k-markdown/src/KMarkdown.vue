@@ -55,7 +55,7 @@ export default {
     imgUrl:{
       type:String,
       default(){
-        return  ``;
+        return  '';
       },
     },
     markdownOption: {

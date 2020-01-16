@@ -14,7 +14,7 @@
     <div v-for="(item,index) in headerData" :key="item+index">
       <k-table-column v-if="item.comps" v-bind="item">
         <template slot-scope="scope">
-          <span v-for="(cp,index) in item.comps" :key="cp+index">
+          <span v-for="(cp,cindex) in item.comps" :key="cp+cindex">
             <slot
               v-if="cp.event"
               :name="`${cp.event}`"
